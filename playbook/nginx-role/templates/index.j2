@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>System Info</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+    }
+    .system-info {
+      max-width: 400px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 1rem;
+      background-color: #f9f9f9;
+    }
+    .system-info h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      color: #333;
+    }
+    .system-info ul {
+      padding-left: 1.2rem;
+    }
+    .system-info li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="system-info">
+    <h2>System Info</h2>
+    <ul>
+      <li>Server Hostname: {{ ansible_facts['hostname'] }}</li>
+      <li>IP address: {{ ansible_facts['all_ipv4_addresses'][0] }}</li>
+      <li>OS Family: {{ ansible_facts['os_family'] }}</li>
+      <li>OS Kernel: {{ ansible_facts['kernel'] }}</li>
+      <li>Distribution Version: {{ ansible_facts['distribution_major_version'] }}
+      <li>Linux Distribution: {{ ansible_facts['distribution'] }}
+    </ul>
+  </div>
+</body>
+</html>

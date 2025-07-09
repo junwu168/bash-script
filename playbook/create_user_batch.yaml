@@ -1,0 +1,24 @@
+---
+- name: Test create users
+  hosts: all
+  remote_user: wujunming
+
+  tasks:
+     - name: Loop create users
+       ansible.builtin.user:
+          name: "{{ item }}"
+          state: present
+       become: true
+       loop:
+          - testuser1
+          - testuser2
+
+     - name: Loop install package
+       ansible.builtin.dnf:
+          name: "{{ item }}"
+          state: present
+       become: true
+       loop:
+          - httpd
+          - nginx
+          - haproxy
