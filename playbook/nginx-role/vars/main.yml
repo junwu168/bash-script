@@ -1,0 +1,5 @@
+---
+# vars file for nginx-role
+template_path: ../templates
+index_path: /var/www/html
+nginx_config_path: /etc/nginx

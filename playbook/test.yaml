@@ -1,0 +1,8 @@
+---
+- name: Install and Configure Nginx
+  hosts: web
+  remote_user: wujunming
+
+  tasks:
+  - name: Test hosts 
+    command: ping

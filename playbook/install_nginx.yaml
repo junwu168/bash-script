@@ -1,0 +1,25 @@
+---
+- name: Install and Configure Nginx
+  hosts: web
+  remote_user: wujunming
+
+  tasks:
+     - name: Install nginx with dnf
+       ansible.builtin.dnf:
+          name: nginx
+          state: installed
+       become: true
+     - name: Configure nginx home page
+       ansible.builtin.template:
+          src: templates/index.j2
+          dest: /var/www/html/index.html
+          mode: "0755"
+       become: true
+       notify:
+          - Start nginx
+
+  handlers:
+     - name: Start nginx
+       ansible.builtin.systemd:
+          name: nginx
+          state: started

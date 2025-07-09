@@ -1,0 +1,26 @@
+---
+# tasks file for nginx-role
+- name: Make sure nginx installed
+  ansible.builtin.dnf:
+    name: nginx
+    state: present
+  when: ansible_facts['hostname'] == 'nginx-server'
+
+- name: Make sure nginx started
+  ansible.builtin.service:
+    name: nginx
+    state: started
+  when: ansible_facts['hostname'] == 'nginx-server'
+
+- name: Change the index.html
+  ansible.builtin.template:
+    src: "{{ template_path }}/index.j2"
+    dest: "{{ index_path }}/index.html"
+  when: ansible_facts['hostname'] == 'nginx-server'
+
+- name: Change the nginx configuration
+  ansible.builtin.template:
+    src: "{{ template_path }}/nginx.j2"
+    dest: "{{ nginx_config_path }}/nginx.conf"
+  when: ansible_facts['hostname'] == 'nginx-server'
+
